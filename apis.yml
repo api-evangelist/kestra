@@ -1,0 +1,30 @@
+aid: kestra
+name: Kestra
+segments:
+  - Workflows
+description: >-
+  Kestra is a declarative workflow orchestration platform where pipelines are defined in YAML, combining visual and code-first approaches.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Workflows
+created: '2026-03-03'
+modified: '2026-03-03'
+url: https://raw.githubusercontent.com/api-evangelist/kestra/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: kestra:kestra
+    name: Kestra
+    description: >-
+      Kestra is a declarative workflow orchestration platform where pipelines are defined in YAML, combining visual and code-first approaches.
+    humanURL: https://example.com
+    tags:
+      - Workflows
+    properties:
+      - type: Documentation
+        url: https://example.com
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
