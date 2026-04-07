@@ -9,11 +9,11 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Workflows
-  - Orchestration
   - Automation
   - Data Pipelines
   - Event-Driven
+  - Orchestration
+  - Workflows
 created: '2026-03-03'
 modified: '2026-03-16'
 url: https://raw.githubusercontent.com/api-evangelist/kestra/refs/heads/main/apis.yml
@@ -28,9 +28,9 @@ apis:
       the full lifecycle of workflow management via REST endpoints.
     humanURL: https://kestra.io/docs/api-reference
     tags:
-      - Workflows
       - Flows
       - Orchestration
+      - Workflows
     properties:
       - type: Documentation
         url: https://kestra.io/docs/api-reference
@@ -46,8 +46,8 @@ apis:
     humanURL: https://kestra.io/docs/api-reference
     tags:
       - Executions
-      - Workflows
       - Orchestration
+      - Workflows
     properties:
       - type: Documentation
         url: https://kestra.io/docs/api-reference
@@ -62,8 +62,8 @@ apis:
     humanURL: https://kestra.io/docs/api-reference
     tags:
       - Namespaces
-      - Organization
       - Orchestration
+      - Organization
     properties:
       - type: Documentation
         url: https://kestra.io/docs/api-reference
@@ -78,8 +78,8 @@ apis:
     humanURL: https://kestra.io/docs/how-to-guides/api
     tags:
       - Key-Value Store
-      - Storage
       - State Management
+      - Storage
     properties:
       - type: Documentation
         url: https://kestra.io/docs/how-to-guides/api
@@ -95,8 +95,8 @@ apis:
     humanURL: https://kestra.io/docs/how-to-guides/api
     tags:
       - Files
-      - Storage
       - Namespaces
+      - Storage
     properties:
       - type: Documentation
         url: https://kestra.io/docs/how-to-guides/api
@@ -111,10 +111,10 @@ apis:
       capabilities for production deployments.
     humanURL: https://kestra.io/docs/api-reference/enterprise
     tags:
-      - Enterprise
       - Authentication
-      - RBAC
+      - Enterprise
       - Governance
+      - RBAC
     properties:
       - type: Documentation
         url: https://kestra.io/docs/api-reference/enterprise
