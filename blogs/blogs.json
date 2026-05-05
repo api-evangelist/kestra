@@ -1,0 +1,13 @@
+{
+  "repo": "kestra",
+  "feeds": [
+    {
+      "source": "https://kestra.io/blogs",
+      "feed_url": "https://kestra.io/rss.xml",
+      "saved": 10,
+      "title": "Kestra\u2019s Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:30:06Z"
+}
