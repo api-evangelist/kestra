@@ -4,10 +4,10 @@
     {
       "source": "https://kestra.io/blogs",
       "feed_url": "https://kestra.io/rss.xml",
-      "saved": 10,
-      "title": "Kestra\u2019s Blog"
+      "title": "Kestra\u2019s Blog",
+      "saved": 0
     }
   ],
   "post_count": 10,
-  "fetched": "2026-05-03T23:30:06Z"
+  "fetched": "2026-05-09T20:17:51Z"
 }
