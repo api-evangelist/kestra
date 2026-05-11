@@ -187,6 +187,44 @@ common:
   - type: Features
     url: https://kestra.io/features/api-first
     name: Kestra API-First Architecture
+integrations:
+  - name: Visit Conapi page
+  - name: Visit Ntico page
+  - name: Visit Ashisuto page
+  - name: redis icon
+  - name: hightouch icon
+  - name: trivy icon
+  - name: deepseek icon
+  - name: opentofu icon
+  - name: huggingface icon
+  - name: linear icon
+  - name: gemini icon
+  - name: opsgenie icon
+  - name: jira icon
+  - name: trello icon
+  - name: neo4j icon
+  - name: crypto icon
+  - name: databricks icon
+  - name: notifications icon
+  - name: sqlmesh icon
+  - name: ai icon
+  - name: terragrunt icon
+  - name: meilisearch icon
+  - name: linkedin icon
+  - name: datagen icon
+  - name: confluence icon
+  - name: sifflet icon
+  - name: serdes icon
+  - name: modal icon
+  - name: ollama icon
+  - name: twilio icon
+  - name: odoo icon
+  - name: tencent icon
+  - name: solace icon
+  - name: notion icon
+  - name: amqp icon
+  - name: prometheus icon
+  - name: ldap icon
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
