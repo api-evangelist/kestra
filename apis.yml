@@ -121,6 +121,8 @@ apis:
       - type: Authentication
         url: https://kestra.io/docs/enterprise/auth/api
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/kestra
   - type: Portal
     url: https://kestra.io/
     name: Kestra Website
