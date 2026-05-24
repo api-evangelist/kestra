@@ -1,0 +1,545 @@
+openapi: 3.1.0
+info:
+  title: Kestra Open Source REST API
+  description: |
+    REST API for the Kestra open source workflow orchestration platform. Covers
+    flow definitions, executions, namespaces, triggers, key-value store, and
+    namespace files. Documented at https://kestra.io/docs/api-reference/open-source.
+    The Kestra server defaults to basic authentication and exposes the API under
+    the `/api/v1/` prefix on the configured host.
+  version: "1.0.0"
+  contact:
+    name: Kestra
+    url: https://kestra.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: http://localhost:8080
+    description: Default local Kestra server.
+  - url: https://{host}
+    description: Self-hosted Kestra deployment.
+    variables:
+      host:
+        default: kestra.example.com
+security:
+  - basicAuth: []
+tags:
+  - name: Flows
+    description: Manage flow definitions.
+  - name: Executions
+    description: Trigger and inspect workflow executions.
+  - name: Namespaces
+    description: Manage namespaces.
+  - name: Triggers
+    description: Manage and test triggers.
+  - name: KVStore
+    description: Manage namespace-scoped key-value pairs.
+  - name: Files
+    description: Manage namespace files.
+paths:
+  /api/v1/flows:
+    get:
+      tags: [Flows]
+      summary: Search flows
+      operationId: searchFlows
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Size'
+        - name: q
+          in: query
+          schema:
+            type: string
+        - name: namespace
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A page of flows.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowPage'
+    post:
+      tags: [Flows]
+      summary: Create a flow
+      operationId: createFlow
+      requestBody:
+        required: true
+        content:
+          application/x-yaml:
+            schema:
+              type: string
+              description: Flow source in YAML.
+      responses:
+        '200':
+          description: Created flow.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flow'
+  /api/v1/flows/{namespace}/{id}:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+      - $ref: '#/components/parameters/FlowId'
+    get:
+      tags: [Flows]
+      summary: Get a flow
+      operationId: getFlow
+      responses:
+        '200':
+          description: A flow definition.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flow'
+    put:
+      tags: [Flows]
+      summary: Update a flow
+      operationId: updateFlow
+      requestBody:
+        required: true
+        content:
+          application/x-yaml:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Updated flow.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flow'
+    delete:
+      tags: [Flows]
+      summary: Delete a flow
+      operationId: deleteFlow
+      responses:
+        '204':
+          description: Flow deleted.
+  /api/v1/executions:
+    get:
+      tags: [Executions]
+      summary: Search executions
+      operationId: searchExecutions
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Size'
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: flowId
+          in: query
+          schema:
+            type: string
+        - name: state
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A page of executions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionPage'
+  /api/v1/executions/trigger/{namespace}/{flowId}:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+      - $ref: '#/components/parameters/FlowIdPath'
+    post:
+      tags: [Executions]
+      summary: Trigger a flow execution
+      operationId: triggerExecution
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                inputs:
+                  type: string
+                  description: JSON-encoded inputs for the flow.
+      responses:
+        '200':
+          description: The created execution.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Execution'
+  /api/v1/executions/{executionId}:
+    parameters:
+      - $ref: '#/components/parameters/ExecutionId'
+    get:
+      tags: [Executions]
+      summary: Get an execution by ID
+      operationId: getExecution
+      responses:
+        '200':
+          description: Execution.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Execution'
+  /api/v1/executions/{executionId}/logs:
+    parameters:
+      - $ref: '#/components/parameters/ExecutionId'
+    get:
+      tags: [Executions]
+      summary: Get logs for an execution
+      operationId: getExecutionLogs
+      parameters:
+        - name: minLevel
+          in: query
+          schema:
+            type: string
+            enum: [TRACE, DEBUG, INFO, WARN, ERROR]
+      responses:
+        '200':
+          description: A list of log lines.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogEntry'
+  /api/v1/namespaces:
+    get:
+      tags: [Namespaces]
+      summary: List namespaces
+      operationId: listNamespaces
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Size'
+      responses:
+        '200':
+          description: A page of namespaces.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespacePage'
+  /api/v1/namespaces/{namespace}:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+    get:
+      tags: [Namespaces]
+      summary: Get a namespace
+      operationId: getNamespace
+      responses:
+        '200':
+          description: Namespace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Namespace'
+  /api/v1/triggers:
+    get:
+      tags: [Triggers]
+      summary: Search triggers
+      operationId: searchTriggers
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Size'
+      responses:
+        '200':
+          description: A page of triggers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Trigger'
+  /api/v1/namespaces/{namespace}/kv:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+    get:
+      tags: [KVStore]
+      summary: List key-value entries in a namespace
+      operationId: listKv
+      responses:
+        '200':
+          description: A list of KV entries (metadata only).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KvEntry'
+  /api/v1/namespaces/{namespace}/kv/{key}:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [KVStore]
+      summary: Get a key-value entry
+      operationId: getKv
+      responses:
+        '200':
+          description: The value for the key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KvEntry'
+    put:
+      tags: [KVStore]
+      summary: Set a key-value entry
+      operationId: setKv
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '204':
+          description: Stored.
+    delete:
+      tags: [KVStore]
+      summary: Delete a key-value entry
+      operationId: deleteKv
+      responses:
+        '204':
+          description: Deleted.
+  /api/v1/namespaces/{namespace}/files:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+    get:
+      tags: [Files]
+      summary: List namespace files
+      operationId: listNamespaceFiles
+      parameters:
+        - name: path
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of files at the given path.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NamespaceFile'
+  /api/v1/namespaces/{namespace}/files/file:
+    parameters:
+      - $ref: '#/components/parameters/Namespace'
+    get:
+      tags: [Files]
+      summary: Download a namespace file
+      operationId: downloadNamespaceFile
+      parameters:
+        - name: path
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File contents.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    post:
+      tags: [Files]
+      summary: Upload a namespace file
+      operationId: uploadNamespaceFile
+      parameters:
+        - name: path
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fileContent:
+                  type: string
+                  format: binary
+      responses:
+        '204':
+          description: File uploaded.
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Optional HTTP basic authentication for self-hosted Kestra instances.
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    FlowId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    FlowIdPath:
+      name: flowId
+      in: path
+      required: true
+      schema:
+        type: string
+    ExecutionId:
+      name: executionId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Flow:
+      type: object
+      properties:
+        id:
+          type: string
+        namespace:
+          type: string
+        revision:
+          type: integer
+        description:
+          type: string
+        source:
+          type: string
+          description: Flow source in YAML.
+    FlowPage:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flow'
+    Execution:
+      type: object
+      properties:
+        id:
+          type: string
+        namespace:
+          type: string
+        flowId:
+          type: string
+        flowRevision:
+          type: integer
+        state:
+          type: object
+          properties:
+            current:
+              type: string
+              enum: [CREATED, RUNNING, PAUSED, RESTARTED, SUCCESS, KILLING, KILLED, FAILED, WARNING]
+        inputs:
+          type: object
+          additionalProperties: true
+    ExecutionPage:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Execution'
+    LogEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        level:
+          type: string
+        message:
+          type: string
+        taskId:
+          type: string
+    Namespace:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+    NamespacePage:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Namespace'
+    Trigger:
+      type: object
+      properties:
+        triggerId:
+          type: string
+        namespace:
+          type: string
+        flowId:
+          type: string
+        type:
+          type: string
+        nextExecutionDate:
+          type: string
+          format: date-time
+    KvEntry:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          description: Stored value (any JSON type).
+        expirationDate:
+          type: string
+          format: date-time
+    NamespaceFile:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [DIRECTORY, FILE]
+        size:
+          type: integer
+        lastModifiedTime:
+          type: string
+          format: date-time
