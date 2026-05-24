@@ -189,6 +189,8 @@ common:
   - type: Features
     url: https://kestra.io/features/api-first
     name: Kestra API-First Architecture
+  - type: LLMsTxt
+    url: https://kestra.io/llms.txt
 integrations:
   - name: Visit Conapi page
   - name: Visit Ntico page
