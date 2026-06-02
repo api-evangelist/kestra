@@ -2,12 +2,20 @@
   "repo": "kestra",
   "feeds": [
     {
-      "source": "https://kestra.io/blogs",
+      "source": "https://kestra.io/rss.xml",
       "feed_url": "https://kestra.io/rss.xml",
-      "title": "Kestra\u2019s Blog",
-      "saved": 44
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://kestra.io/docs/api-reference/kestra-sdk",
+      "feed_url": "https://kestra.io/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
   "post_count": 54,
-  "fetched": "2026-05-17T20:20:35Z"
+  "fetched": "2026-06-01T23:35:02Z"
 }
