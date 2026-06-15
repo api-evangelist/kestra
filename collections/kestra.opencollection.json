@@ -1,0 +1,524 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Kestra Open Source REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/flows",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search flows"
+        },
+        {
+          "info": {
+            "name": "Create a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/api/v1/flows"
+          },
+          "docs": "Create a flow"
+        },
+        {
+          "info": {
+            "name": "Get a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/flows/:namespace/:id",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a flow"
+        },
+        {
+          "info": {
+            "name": "Update a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/api/v1/flows/:namespace/:id",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Update a flow"
+        },
+        {
+          "info": {
+            "name": "Delete a flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/api/v1/flows/:namespace/:id",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a flow"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/executions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search executions"
+        },
+        {
+          "info": {
+            "name": "Trigger a flow execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/api/v1/executions/trigger/:namespace/:flowId",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "inputs",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Trigger a flow execution"
+        },
+        {
+          "info": {
+            "name": "Get an execution by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/executions/:executionId",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an execution by ID"
+        },
+        {
+          "info": {
+            "name": "Get logs for an execution",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/executions/:executionId/logs",
+            "params": [
+              {
+                "name": "executionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "minLevel",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get logs for an execution"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Namespaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/namespaces",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List namespaces"
+        },
+        {
+          "info": {
+            "name": "Get a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/namespaces/:namespace",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a namespace"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search triggers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/triggers",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search triggers"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "KVStore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List key-value entries in a namespace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/namespaces/:namespace/kv",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List key-value entries in a namespace"
+        },
+        {
+          "info": {
+            "name": "Get a key-value entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/namespaces/:namespace/kv/:key",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a key-value entry"
+        },
+        {
+          "info": {
+            "name": "Set a key-value entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/api/v1/namespaces/:namespace/kv/:key",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a key-value entry"
+        },
+        {
+          "info": {
+            "name": "Delete a key-value entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8080/api/v1/namespaces/:namespace/kv/:key",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a key-value entry"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List namespace files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/namespaces/:namespace/files",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List namespace files"
+        },
+        {
+          "info": {
+            "name": "Download a namespace file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/api/v1/namespaces/:namespace/files/file",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Download a namespace file"
+        },
+        {
+          "info": {
+            "name": "Upload a namespace file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/api/v1/namespaces/:namespace/files/file",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "fileContent",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a namespace file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
