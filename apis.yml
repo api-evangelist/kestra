@@ -121,6 +121,12 @@ apis:
       - type: Authentication
         url: https://kestra.io/docs/enterprise/auth/api
 common:
+  - type: TrustCenter
+    url: security/kestra-trust-center.yml
+  - type: DomainSecurity
+    url: security/kestra-domain-security.yml
+  - type: Authentication
+    url: authentication/kestra-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/kestra
   - type: Portal

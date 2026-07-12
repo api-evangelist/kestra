@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/kestra-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Optional HTTP basic authentication for self-hosted Kestra instances.
+  sources:
+  - openapi/kestra-openapi.yml
