@@ -1,0 +1,133 @@
+openapi: 3.1.0
+info:
+  title: Kestra Open Source REST Executions Files API
+  description: 'REST API for the Kestra open source workflow orchestration platform. Covers
+
+    flow definitions, executions, namespaces, triggers, key-value store, and
+
+    namespace files. Documented at https://kestra.io/docs/api-reference/open-source.
+
+    The Kestra server defaults to basic authentication and exposes the API under
+
+    the `/api/v1/` prefix on the configured host.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Kestra
+    url: https://kestra.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080
+  description: Default local Kestra server.
+- url: https://{host}
+  description: Self-hosted Kestra deployment.
+  variables:
+    host:
+      default: kestra.example.com
+security:
+- basicAuth: []
+tags:
+- name: Files
+  description: Manage namespace files.
+paths:
+  /api/v1/namespaces/{namespace}/files:
+    parameters:
+    - $ref: '#/components/parameters/Namespace'
+    get:
+      tags:
+      - Files
+      summary: List namespace files
+      operationId: listNamespaceFiles
+      parameters:
+      - name: path
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of files at the given path.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NamespaceFile'
+  /api/v1/namespaces/{namespace}/files/file:
+    parameters:
+    - $ref: '#/components/parameters/Namespace'
+    get:
+      tags:
+      - Files
+      summary: Download a namespace file
+      operationId: downloadNamespaceFile
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: File contents.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    post:
+      tags:
+      - Files
+      summary: Upload a namespace file
+      operationId: uploadNamespaceFile
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                fileContent:
+                  type: string
+                  format: binary
+      responses:
+        '204':
+          description: File uploaded.
+components:
+  schemas:
+    NamespaceFile:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - DIRECTORY
+          - FILE
+        size:
+          type: integer
+        lastModifiedTime:
+          type: string
+          format: date-time
+  parameters:
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Optional HTTP basic authentication for self-hosted Kestra instances.

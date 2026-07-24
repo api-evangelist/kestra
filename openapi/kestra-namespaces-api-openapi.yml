@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: Kestra Open Source REST Executions Namespaces API
+  description: 'REST API for the Kestra open source workflow orchestration platform. Covers
+
+    flow definitions, executions, namespaces, triggers, key-value store, and
+
+    namespace files. Documented at https://kestra.io/docs/api-reference/open-source.
+
+    The Kestra server defaults to basic authentication and exposes the API under
+
+    the `/api/v1/` prefix on the configured host.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Kestra
+    url: https://kestra.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080
+  description: Default local Kestra server.
+- url: https://{host}
+  description: Self-hosted Kestra deployment.
+  variables:
+    host:
+      default: kestra.example.com
+security:
+- basicAuth: []
+tags:
+- name: Namespaces
+  description: Manage namespaces.
+paths:
+  /api/v1/namespaces:
+    get:
+      tags:
+      - Namespaces
+      summary: List namespaces
+      operationId: listNamespaces
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      responses:
+        '200':
+          description: A page of namespaces.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NamespacePage'
+  /api/v1/namespaces/{namespace}:
+    parameters:
+    - $ref: '#/components/parameters/Namespace'
+    get:
+      tags:
+      - Namespaces
+      summary: Get a namespace
+      operationId: getNamespace
+      responses:
+        '200':
+          description: Namespace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Namespace'
+components:
+  parameters:
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+  schemas:
+    NamespacePage:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Namespace'
+    Namespace:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Optional HTTP basic authentication for self-hosted Kestra instances.

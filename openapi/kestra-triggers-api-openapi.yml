@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: Kestra Open Source REST Executions Triggers API
+  description: 'REST API for the Kestra open source workflow orchestration platform. Covers
+
+    flow definitions, executions, namespaces, triggers, key-value store, and
+
+    namespace files. Documented at https://kestra.io/docs/api-reference/open-source.
+
+    The Kestra server defaults to basic authentication and exposes the API under
+
+    the `/api/v1/` prefix on the configured host.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Kestra
+    url: https://kestra.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080
+  description: Default local Kestra server.
+- url: https://{host}
+  description: Self-hosted Kestra deployment.
+  variables:
+    host:
+      default: kestra.example.com
+security:
+- basicAuth: []
+tags:
+- name: Triggers
+  description: Manage and test triggers.
+paths:
+  /api/v1/triggers:
+    get:
+      tags:
+      - Triggers
+      summary: Search triggers
+      operationId: searchTriggers
+      parameters:
+      - $ref: '#/components/parameters/Page'
+      - $ref: '#/components/parameters/Size'
+      responses:
+        '200':
+          description: A page of triggers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Trigger'
+components:
+  parameters:
+    Size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+  schemas:
+    Trigger:
+      type: object
+      properties:
+        triggerId:
+          type: string
+        namespace:
+          type: string
+        flowId:
+          type: string
+        type:
+          type: string
+        nextExecutionDate:
+          type: string
+          format: date-time
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Optional HTTP basic authentication for self-hosted Kestra instances.
