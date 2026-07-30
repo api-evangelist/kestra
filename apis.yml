@@ -5,9 +5,22 @@ segments:
 description: >-
   Kestra is a declarative workflow orchestration platform where pipelines are defined in YAML, combining visual and code-first approaches.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/kestra.png
 tags:
   - Automation
   - Data Pipelines
@@ -19,107 +32,101 @@ modified: '2026-04-28'
 url: https://raw.githubusercontent.com/api-evangelist/kestra/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: kestra:flows-api
-    name: Kestra Flows API
-    description: >-
-      The Kestra Flows API provides programmatic access to manage workflow
-      definitions in the Kestra orchestration platform. It enables creating,
-      updating, retrieving, and deleting flows defined in YAML, supporting
-      the full lifecycle of workflow management via REST endpoints.
-    humanURL: https://kestra.io/docs/api-reference
-    tags:
-      - Flows
-      - Orchestration
-      - Workflows
-    properties:
-      - type: Documentation
-        url: https://kestra.io/docs/api-reference
-      - type: OpenAPI
-        url: https://kestra.io/docs/api-reference/open-source
-  - aid: kestra:executions-api
-    name: Kestra Executions API
-    description: >-
-      The Kestra Executions API allows triggering workflow executions,
-      monitoring their state, retrieving execution details including task
-      run outputs and state transitions, and managing the lifecycle of
-      running workflows programmatically.
-    humanURL: https://kestra.io/docs/api-reference
-    tags:
-      - Executions
-      - Orchestration
-      - Workflows
-    properties:
-      - type: Documentation
-        url: https://kestra.io/docs/api-reference
-      - type: OpenAPI
-        url: https://kestra.io/docs/api-reference/open-source
-  - aid: kestra:namespaces-api
-    name: Kestra Namespaces API
-    description: >-
-      The Kestra Namespaces API provides endpoints for managing namespaces,
-      which serve as logical groupings for organizing flows, files, secrets,
-      and key-value pairs within the Kestra platform.
-    humanURL: https://kestra.io/docs/api-reference
-    tags:
-      - Namespaces
-      - Orchestration
-      - Organization
-    properties:
-      - type: Documentation
-        url: https://kestra.io/docs/api-reference
-      - type: OpenAPI
-        url: https://kestra.io/docs/api-reference/open-source
-  - aid: kestra:kv-store-api
-    name: Kestra Key-Value Store API
-    description: >-
-      The Kestra Key-Value Store API enables storing and retrieving key-value
-      pairs within namespaces, providing a simple data persistence mechanism
-      for workflows to share state and configuration across executions.
-    humanURL: https://kestra.io/docs/how-to-guides/api
-    tags:
-      - Key-Value Store
-      - State Management
-      - Storage
-    properties:
-      - type: Documentation
-        url: https://kestra.io/docs/how-to-guides/api
-      - type: OpenAPI
-        url: https://kestra.io/docs/api-reference/open-source
-  - aid: kestra:namespace-files-api
-    name: Kestra Namespace Files API
-    description: >-
-      The Kestra Namespace Files API provides endpoints for listing,
-      uploading, and downloading files within namespaces, enabling file
-      management for workflows that need to work with scripts, configurations,
-      or other file-based resources.
-    humanURL: https://kestra.io/docs/how-to-guides/api
-    tags:
-      - Files
-      - Namespaces
-      - Storage
-    properties:
-      - type: Documentation
-        url: https://kestra.io/docs/how-to-guides/api
-      - type: OpenAPI
-        url: https://kestra.io/docs/api-reference/open-source
-  - aid: kestra:enterprise-api
-    name: Kestra Enterprise API
-    description: >-
-      The Kestra Enterprise API extends the open-source API with additional
-      endpoints for enterprise features including authentication, RBAC,
-      audit logging, multi-tenancy, SSO, and advanced governance
-      capabilities for production deployments.
-    humanURL: https://kestra.io/docs/api-reference/enterprise
-    tags:
-      - Authentication
-      - Enterprise
-      - Governance
-      - RBAC
-    properties:
-      - type: Documentation
-        url: https://kestra.io/docs/api-reference/enterprise
-      - type: Authentication
-        url: https://kestra.io/docs/enterprise/auth/api
+- aid: kestra:enterprise-api
+  name: Kestra Enterprise API
+  description: >-
+    The Kestra Enterprise API extends the open-source API with additional endpoints for enterprise features
+    including authentication, RBAC, audit logging, multi-tenancy, SSO, and advanced governance capabilities
+    for production deployments.
+  humanURL: https://kestra.io/docs/api-reference/enterprise
+  tags:
+  - Authentication
+  - Enterprise
+  - Governance
+  - RBAC
+  properties:
+  - type: Documentation
+    url: https://kestra.io/docs/api-reference/enterprise
+  - type: Authentication
+    url: https://kestra.io/docs/enterprise/auth/api
+- aid: kestra:kestra-executions-api
+  name: Kestra Executions API
+  description: Trigger and inspect workflow executions.
+  humanURL: https://kestra.io/docs/api-reference
+  tags:
+  - Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/kestra-executions-api-openapi.yml
+  - type: Documentation
+    url: https://kestra.io/docs/api-reference
+  - type: Documentation
+    url: https://kestra.io/docs/how-to-guides/api
+- aid: kestra:kestra-files-api
+  name: Kestra Files API
+  description: Manage namespace files.
+  humanURL: https://kestra.io/docs/api-reference
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/kestra-files-api-openapi.yml
+  - type: Documentation
+    url: https://kestra.io/docs/api-reference
+  - type: Documentation
+    url: https://kestra.io/docs/how-to-guides/api
+- aid: kestra:kestra-flows-api
+  name: Kestra Flows API
+  description: Manage flow definitions.
+  humanURL: https://kestra.io/docs/api-reference
+  tags:
+  - Flows
+  properties:
+  - type: OpenAPI
+    url: openapi/kestra-flows-api-openapi.yml
+  - type: Documentation
+    url: https://kestra.io/docs/api-reference
+  - type: Documentation
+    url: https://kestra.io/docs/how-to-guides/api
+- aid: kestra:kestra-kvstore-api
+  name: Kestra KVStore API
+  description: Manage namespace-scoped key-value pairs.
+  humanURL: https://kestra.io/docs/api-reference
+  tags:
+  - KVStore
+  properties:
+  - type: OpenAPI
+    url: openapi/kestra-kvstore-api-openapi.yml
+  - type: Documentation
+    url: https://kestra.io/docs/api-reference
+  - type: Documentation
+    url: https://kestra.io/docs/how-to-guides/api
+- aid: kestra:kestra-namespaces-api
+  name: Kestra Namespaces API
+  description: Manage namespaces.
+  humanURL: https://kestra.io/docs/api-reference
+  tags:
+  - Namespaces
+  properties:
+  - type: OpenAPI
+    url: openapi/kestra-namespaces-api-openapi.yml
+  - type: Documentation
+    url: https://kestra.io/docs/api-reference
+  - type: Documentation
+    url: https://kestra.io/docs/how-to-guides/api
+- aid: kestra:kestra-triggers-api
+  name: Kestra Triggers API
+  description: Manage and test triggers.
+  humanURL: https://kestra.io/docs/api-reference
+  tags:
+  - Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/kestra-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://kestra.io/docs/api-reference
+  - type: Documentation
+    url: https://kestra.io/docs/how-to-guides/api
 common:
   - type: AgenticAccess
     url: agentic-access/kestra-agentic-access.yml
