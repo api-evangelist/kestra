@@ -1,0 +1,24 @@
+{
+  "provider": "kestra",
+  "sources": [
+    "kestra-executions-api-openapi.yml",
+    "kestra-files-api-openapi.yml",
+    "kestra-flows-api-openapi.yml",
+    "kestra-kvstore-api-openapi.yml",
+    "kestra-namespaces-api-openapi.yml",
+    "kestra-triggers-api-openapi.yml"
+  ],
+  "outputs": [
+    "kestra-executions-api-openapi.yml",
+    "kestra-files-api-openapi.yml",
+    "kestra-flows-api-openapi.yml",
+    "kestra-kvstore-api-openapi.yml",
+    "kestra-namespaces-api-openapi.yml",
+    "kestra-triggers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
