@@ -128,6 +128,19 @@ apis:
   - type: Documentation
     url: https://kestra.io/docs/how-to-guides/api
 common:
+  - type: IssueTracker
+    url: https://github.com/kestra-io/kestra/issues
+  - type: Releases
+    url: https://github.com/kestra-io/kestra/releases
+  - type: SecurityPolicy
+    url: https://github.com/kestra-io/kestra/blob/develop/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/kestra-io/kestra/blob/develop/.github/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/kestra-io/kestra/blob/develop/.github/CONTRIBUTING.md
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/kestra-io/kestra/blob/develop/LICENSE
   - type: AgenticAccess
     url: agentic-access/kestra-agentic-access.yml
   - type: TrustCenter
