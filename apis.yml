@@ -117,7 +117,7 @@ apis:
   description: Manage namespace-scoped key-value pairs.
   humanURL: https://kestra.io/docs/api-reference
   tags:
-  - KVStore
+  - KV Store
   tags_raw:
   - KVStore
   properties:
