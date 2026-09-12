@@ -155,6 +155,8 @@ apis:
   - type: Documentation
     url: https://kestra.io/docs/how-to-guides/api
 common:
+  - type: Website
+    url: https://www.kestra.io/
   - type: IssueTracker
     url: https://github.com/kestra-io/kestra/issues
   - type: Releases
