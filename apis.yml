@@ -113,21 +113,6 @@ apis:
     url: https://kestra.io/docs/api-reference
   - type: Documentation
     url: https://kestra.io/docs/how-to-guides/api
-- aid: kestra:kestra-kvstore-api
-  name: Kestra KVStore API
-  description: Manage namespace-scoped key-value pairs.
-  humanURL: https://kestra.io/docs/api-reference
-  tags:
-  - KV Store
-  tags_raw:
-  - KVStore
-  properties:
-  - type: OpenAPI
-    url: openapi/kestra-kvstore-api-openapi.yml
-  - type: Documentation
-    url: https://kestra.io/docs/api-reference
-  - type: Documentation
-    url: https://kestra.io/docs/how-to-guides/api
 - aid: kestra:kestra-namespaces-api
   name: Kestra Namespaces API
   description: Manage namespaces.
@@ -150,6 +135,19 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/kestra-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://kestra.io/docs/api-reference
+  - type: Documentation
+    url: https://kestra.io/docs/how-to-guides/api
+- aid: kestra:kestra-kv-store-api
+  name: Kestra KV Store API
+  description: Manage namespace-scoped key-value pairs.
+  humanURL: https://kestra.io/docs/api-reference/enterprise
+  tags:
+  - KV Store
+  properties:
+  - type: OpenAPI
+    url: openapi/kestra-kv-store-api-openapi.yml
   - type: Documentation
     url: https://kestra.io/docs/api-reference
   - type: Documentation
