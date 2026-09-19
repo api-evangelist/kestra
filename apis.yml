@@ -105,6 +105,8 @@ apis:
   description: Manage flow definitions.
   humanURL: https://kestra.io/docs/api-reference
   tags:
+  - Flow
+  tags_raw:
   - Flows
   properties:
   - type: OpenAPI
