@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kestra Open Source REST Executions Flows API
+  title: Kestra Open Source REST Flows API
   description: 'REST API for the Kestra open source workflow orchestration platform. Covers
 
     flow definitions, executions, namespaces, triggers, key-value store, and
@@ -9,9 +9,7 @@ info:
 
     The Kestra server defaults to basic authentication and exposes the API under
 
-    the `/api/v1/` prefix on the configured host.
-
-    '
+    the `/api/v1/` prefix on the configured host.'
   version: 1.0.0
   contact:
     name: Kestra
@@ -126,12 +124,6 @@ components:
       required: true
       schema:
         type: string
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
     Page:
       name: page
       in: query
@@ -139,6 +131,12 @@ components:
         type: integer
         minimum: 1
         default: 1
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
     Size:
       name: size
       in: query
@@ -148,6 +146,15 @@ components:
         maximum: 200
         default: 25
   schemas:
+    FlowPage:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Flow'
     Flow:
       type: object
       properties:
@@ -162,15 +169,6 @@ components:
         source:
           type: string
           description: Flow source in YAML.
-    FlowPage:
-      type: object
-      properties:
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Flow'
   securitySchemes:
     basicAuth:
       type: http

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Kestra Open Source REST Executions API
   description: 'REST API for the Kestra open source workflow orchestration platform. Covers
@@ -9,9 +9,7 @@ info:
 
     The Kestra server defaults to basic authentication and exposes the API under
 
-    the `/api/v1/` prefix on the configured host.
-
-    '
+    the `/api/v1/` prefix on the configured host.'
   version: 1.0.0
   contact:
     name: Kestra
@@ -131,40 +129,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/LogEntry'
 components:
-  parameters:
-    FlowIdPath:
-      name: flowId
-      in: path
-      required: true
-      schema:
-        type: string
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
-    ExecutionId:
-      name: executionId
-      in: path
-      required: true
-      schema:
-        type: string
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    Size:
-      name: size
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
   schemas:
     Execution:
       type: object
@@ -195,6 +159,15 @@ components:
         inputs:
           type: object
           additionalProperties: true
+    ExecutionPage:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Execution'
     LogEntry:
       type: object
       properties:
@@ -207,15 +180,40 @@ components:
           type: string
         taskId:
           type: string
-    ExecutionPage:
-      type: object
-      properties:
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Execution'
+  parameters:
+    Size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    FlowIdPath:
+      name: flowId
+      in: path
+      required: true
+      schema:
+        type: string
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
+    ExecutionId:
+      name: executionId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

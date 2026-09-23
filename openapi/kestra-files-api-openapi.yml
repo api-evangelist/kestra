@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kestra Open Source REST Executions Files API
+  title: Kestra Open Source REST Files API
   description: 'REST API for the Kestra open source workflow orchestration platform. Covers
 
     flow definitions, executions, namespaces, triggers, key-value store, and
@@ -9,9 +9,7 @@ info:
 
     The Kestra server defaults to basic authentication and exposes the API under
 
-    the `/api/v1/` prefix on the configured host.
-
-    '
+    the `/api/v1/` prefix on the configured host.'
   version: 1.0.0
   contact:
     name: Kestra
@@ -103,6 +101,13 @@ paths:
         '204':
           description: File uploaded.
 components:
+  parameters:
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     NamespaceFile:
       type: object
@@ -119,13 +124,6 @@ components:
         lastModifiedTime:
           type: string
           format: date-time
-  parameters:
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

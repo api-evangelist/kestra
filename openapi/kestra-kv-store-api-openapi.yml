@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Kestra Open Source REST Executions KVStore API
+  title: Kestra Open Source REST KV Store API
   description: 'REST API for the Kestra open source workflow orchestration platform. Covers
 
     flow definitions, executions, namespaces, triggers, key-value store, and
@@ -9,9 +9,7 @@ info:
 
     The Kestra server defaults to basic authentication and exposes the API under
 
-    the `/api/v1/` prefix on the configured host.
-
-    '
+    the `/api/v1/` prefix on the configured host.'
   version: 1.0.0
   contact:
     name: Kestra
@@ -30,7 +28,7 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: KVStore
+- name: KV Store
   description: Manage namespace-scoped key-value pairs.
 paths:
   /api/v1/namespaces/{namespace}/kv:
@@ -38,7 +36,7 @@ paths:
     - $ref: '#/components/parameters/Namespace'
     get:
       tags:
-      - KVStore
+      - KV Store
       summary: List key-value entries in a namespace
       operationId: listKv
       responses:
@@ -60,7 +58,7 @@ paths:
         type: string
     get:
       tags:
-      - KVStore
+      - KV Store
       summary: Get a key-value entry
       operationId: getKv
       responses:
@@ -72,7 +70,7 @@ paths:
                 $ref: '#/components/schemas/KvEntry'
     put:
       tags:
-      - KVStore
+      - KV Store
       summary: Set a key-value entry
       operationId: setKv
       requestBody:
@@ -87,7 +85,7 @@ paths:
           description: Stored.
     delete:
       tags:
-      - KVStore
+      - KV Store
       summary: Delete a key-value entry
       operationId: deleteKv
       responses:

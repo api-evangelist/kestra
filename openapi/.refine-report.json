@@ -1,12 +1,7 @@
 {
   "provider": "kestra",
   "sources": [
-    "kestra-executions-api-openapi.yml",
-    "kestra-files-api-openapi.yml",
-    "kestra-flows-api-openapi.yml",
-    "kestra-kvstore-api-openapi.yml",
-    "kestra-namespaces-api-openapi.yml",
-    "kestra-triggers-api-openapi.yml"
+    "_original/kestra-openapi.yml"
   ],
   "outputs": [
     "kestra-executions-api-openapi.yml",
@@ -16,9 +11,23 @@
     "kestra-namespaces-api-openapi.yml",
     "kestra-triggers-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "kestra-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: kestra-kv-store-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 7 total)"
+  ],
+  "skipped": [
+    "kestra-executions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kestra-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kestra-flows-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kestra-kv-store-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kestra-namespaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "kestra-triggers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
