@@ -130,6 +130,18 @@ paths:
                   $ref: '#/components/schemas/LogEntry'
 components:
   schemas:
+    LogEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        level:
+          type: string
+        message:
+          type: string
+        taskId:
+          type: string
     Execution:
       type: object
       properties:
@@ -168,34 +180,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Execution'
-    LogEntry:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        level:
-          type: string
-        message:
-          type: string
-        taskId:
-          type: string
   parameters:
-    Size:
-      name: size
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
     FlowIdPath:
       name: flowId
       in: path
@@ -208,6 +193,21 @@ components:
       required: true
       schema:
         type: string
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    Size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
     ExecutionId:
       name: executionId
       in: path

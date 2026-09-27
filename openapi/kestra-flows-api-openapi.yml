@@ -124,6 +124,12 @@ components:
       required: true
       schema:
         type: string
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
     Page:
       name: page
       in: query
@@ -131,12 +137,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
     Size:
       name: size
       in: query
