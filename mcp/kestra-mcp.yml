@@ -17,28 +17,52 @@ deployment:
 tools_count: 12
 tools:
 - name: search
-  description: ''
+  description: 'Search Kestra plugins, docs, blueprints, or blogs. Returns matching results with highlights.
+    Parameter ''query'' is the search text. Optional ''type'' must be one of: PLUGINS (default), DOCS,
+    BLUEPRINTS, BLOGS.'
 - name: task_schema
-  description: ''
+  description: Get the full schema/documentation for a specific Kestra task class. Returns properties
+    schema, outputs schema and documentation. Parameter 'cls' is the full class name like 'io.kestra.plugin.core.log.Log'.
+    Optional 'properties' must be one
 - name: list_plugins
-  description: ''
+  description: 'List available Kestra plugins with summary info (name, title, group, description, categories,
+    and counts per element type: taskCount, triggerCount, taskRunnerCount, storageCount, secretManagerCount,
+    logExporterCount). Use this to discover w'
 - name: plugin_tasks
-  description: ''
+  description: List all tasks and triggers for a specific Kestra plugin, grouped by subpackage. The 'plugin'
+    parameter accepts a plugin name like 'plugin-aws' or 'core', or a group like 'io.kestra.plugin.aws'.
 - name: list_installed_versions
-  description: ''
+  description: List the currently installed version of each Kestra plugin. Shows each plugin's name, group,
+    and version number. Optional 'plugin' parameter filters by plugin name (e.g. 'aws', 'gcp'). For the
+    full GitHub release history of a plugin, use pl
 - name: list_plugin_elements
-  description: ''
+  description: 'List all elements of one type across all Kestra plugins. ''elementType'' must be one of:
+    TASK_RUNNER (task runner backends, e.g. Kubernetes, GCP Batch, AWS Batch, Docker), TRIGGER (trigger
+    types, e.g. Schedule, Webhook, Realtime variants, JDB'
 - name: plugin_release_history
-  description: ''
+  description: 'Get the full release history of a Kestra plugin from GitHub, including which Kestra version
+    each release targets. Parameter ''plugin'' is the repo name (e.g. ''plugin-aws'', ''plugin-gcp'').
+    Optional ''limit'' sets max releases to return (default:'
 - name: search_docs
-  description: ''
+  description: Search Kestra documentation pages by keyword. Returns matching pages with their parsedUrl
+    and title. Optional parameter 'version' targets a specific Kestra version (e.g. 'v0.23'); defaults
+    to the current installed version.
 - name: get_doc
-  description: ''
+  description: Fetch the full markdown content and metadata for a Kestra documentation page. Pass either
+    the parsedUrl path (e.g. 'docs/getting-started') from search_docs, or a docId. If the identifier contains
+    a '/' it is treated as a path first; otherwi
 - name: list_doc_children
-  description: ''
+  description: List all documentation pages under a given path prefix, ordered by their navigation order.
+    Returns each child's parsedUrl and metadata. Parameter 'path' is the parent path prefix (e.g. 'docs/getting-started').
+    Optional parameter 'version' t
 - name: search_blueprints
-  description: ''
+  description: 'Search Kestra flow blueprints -- ready-made flow templates. Returns matching blueprints
+    with id, title, description, tags, includedTasks (FQCNs), and ee (Enterprise Edition flag). Optional
+    parameters: ''query'' (search text), ''tags'' (comma-se'
 - name: get_blueprint_flow
-  description: ''
+  description: Get the full YAML flow definition for a specific Kestra blueprint. Parameter 'id' is the
+    blueprint ID from the search_blueprints tool.
 tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
