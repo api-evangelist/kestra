@@ -92,13 +92,6 @@ paths:
         '204':
           description: Deleted.
 components:
-  parameters:
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     KvEntry:
       type: object
@@ -110,6 +103,13 @@ components:
         expirationDate:
           type: string
           format: date-time
+  parameters:
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

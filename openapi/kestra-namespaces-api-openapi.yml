@@ -63,24 +63,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Namespace'
 components:
-  schemas:
-    Namespace:
-      type: object
-      properties:
-        id:
-          type: string
-        description:
-          type: string
-    NamespacePage:
-      type: object
-      properties:
-        total:
-          type: integer
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Namespace'
   parameters:
+    Size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 200
+        default: 25
     Namespace:
       name: namespace
       in: path
@@ -94,14 +85,23 @@ components:
         type: integer
         minimum: 1
         default: 1
-    Size:
-      name: size
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 25
+  schemas:
+    NamespacePage:
+      type: object
+      properties:
+        total:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Namespace'
+    Namespace:
+      type: object
+      properties:
+        id:
+          type: string
+        description:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

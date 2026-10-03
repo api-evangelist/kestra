@@ -56,6 +56,13 @@ paths:
                       $ref: '#/components/schemas/Trigger'
 components:
   parameters:
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
     Size:
       name: size
       in: query
@@ -64,13 +71,6 @@ components:
         minimum: 1
         maximum: 200
         default: 25
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
   schemas:
     Trigger:
       type: object
