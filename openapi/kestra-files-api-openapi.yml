@@ -101,6 +101,13 @@ paths:
         '204':
           description: File uploaded.
 components:
+  parameters:
+    Namespace:
+      name: namespace
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     NamespaceFile:
       type: object
@@ -117,13 +124,6 @@ components:
         lastModifiedTime:
           type: string
           format: date-time
-  parameters:
-    Namespace:
-      name: namespace
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http
