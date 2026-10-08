@@ -155,6 +155,12 @@ apis:
   - type: Documentation
     url: https://kestra.io/docs/how-to-guides/api
 common:
+  - type: Plans
+    url: plans/kestra-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/kestra-rate-limits.yml
+  - type: FinOps
+    url: finops/kestra-finops.yml
   - type: Website
     url: https://www.kestra.io/
   - type: IssueTracker
