@@ -55,21 +55,6 @@ paths:
                     items:
                       $ref: '#/components/schemas/Trigger'
 components:
-  schemas:
-    Trigger:
-      type: object
-      properties:
-        triggerId:
-          type: string
-        namespace:
-          type: string
-        flowId:
-          type: string
-        type:
-          type: string
-        nextExecutionDate:
-          type: string
-          format: date-time
   parameters:
     Page:
       name: page
@@ -86,6 +71,21 @@ components:
         minimum: 1
         maximum: 200
         default: 25
+  schemas:
+    Trigger:
+      type: object
+      properties:
+        triggerId:
+          type: string
+        namespace:
+          type: string
+        flowId:
+          type: string
+        type:
+          type: string
+        nextExecutionDate:
+          type: string
+          format: date-time
   securitySchemes:
     basicAuth:
       type: http
