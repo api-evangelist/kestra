@@ -1,0 +1,394 @@
+{
+  "endpoint": "https://api.kestra.io/v1/mcp",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "kestra-plugins-blueprints",
+    "version": "1.0.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "name": "search",
+        "title": "Search",
+        "description": "Search Kestra plugins, docs, blueprints, or blogs. Returns matching results with highlights. Parameter 'query' is the search text. Optional 'type' must be one of: PLUGINS (default), DOCS, BLUEPRINTS, BLOGS.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "the search text"
+            },
+            "type": {
+              "type": "string",
+              "description": "one of: PLUGINS (default), DOCS, BLUEPRINTS, BLOGS"
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "outputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "title": "SearchResponse",
+          "type": "object",
+          "properties": {
+            "results": {
+              "description": "array of result objects",
+              "type": "array",
+              "items": {
+                "title": "SearchResult",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "a unique ID for the document or search result item",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "human-readable title",
+                    "type": "string"
+                  },
+                  "url": {
+                    "description": "canonical URL for citation",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "url"
+                ]
+              }
+            }
+          },
+          "required": [
+            "results"
+          ],
+          "$id": "http://localhost:8080/schemas/search-response.schema.json"
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "task_schema",
+        "title": "Task Schema",
+        "description": "Get the full schema/documentation for a specific Kestra task class. Returns properties schema, outputs schema and documentation. Parameter 'cls' is the full class name like 'io.kestra.plugin.core.log.Log'. Optional 'properties' must be one of: 'declared' (default, only properties declared by the task) or 'all' (also includes inherited properties).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "cls": {
+              "type": "string",
+              "description": "the full class name, e.g. 'io.kestra.plugin.core.log.Log'"
+            },
+            "properties": {
+              "type": "string",
+              "description": "one of: 'declared' (default, only properties declared by the task) or 'all' (also includes inherited properties)"
+            }
+          },
+          "required": [
+            "cls"
+          ]
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "list_plugins",
+        "title": "List Plugins",
+        "description": "List available Kestra plugins with summary info (name, title, group, description, categories, and counts per element type: taskCount, triggerCount, taskRunnerCount, storageCount, secretManagerCount, logExporterCount). Use this to discover what plugins exist. Filter by count > 0 to find plugins with a specific element type. Optional 'category' parameter filters by: AI, BUSINESS, CLOUD, CORE, DATA, INFRASTRUCTURE. Optional 'detail' parameter: 'full' (default) includes plugin descriptions, 'concise' omits them to save tokens.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "detail": {
+              "type": "string",
+              "description": "'full' (default) includes plugin descriptions, 'concise' omits them to save tokens"
+            },
+            "category": {
+              "type": "string",
+              "description": "filter by category: AI, BUSINESS, CLOUD, CORE, DATA, INFRASTRUCTURE"
+            }
+          },
+          "required": []
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "plugin_tasks",
+        "title": "Plugin Tasks",
+        "description": "List all tasks and triggers for a specific Kestra plugin, grouped by subpackage. The 'plugin' parameter accepts a plugin name like 'plugin-aws' or 'core', or a group like 'io.kestra.plugin.aws'.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "plugin": {
+              "type": "string",
+              "description": "plugin name like 'plugin-aws' or 'core', or a group like 'io.kestra.plugin.aws'"
+            }
+          },
+          "required": [
+            "plugin"
+          ]
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "list_installed_versions",
+        "title": "Installed Plugin Versions",
+        "description": "List the currently installed version of each Kestra plugin. Shows each plugin's name, group, and version number. Optional 'plugin' parameter filters by plugin name (e.g. 'aws', 'gcp'). For the full GitHub release history of a plugin, use plugin_release_history instead.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "plugin": {
+              "type": "string",
+              "description": "filter by plugin name, e.g. 'aws', 'gcp'"
+            }
+          },
+          "required": []
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "list_plugin_elements",
+        "title": "List Plugin Elements",
+        "description": "List all elements of one type across all Kestra plugins. 'elementType' must be one of: TASK_RUNNER (task runner backends, e.g. Kubernetes, GCP Batch, AWS Batch, Docker), TRIGGER (trigger types, e.g. Schedule, Webhook, Realtime variants, JDBC and message queue triggers), STORAGE (internal storage backends Kestra uses for internal state and outputs, e.g. GCS, S3, Azure Blob Storage, MinIO), SECRET_MANAGER (secret manager backends, e.g. HashiCorp Vault, AWS Secrets Manager, GCP Secret Manager, Azure Key Vault, 1Password, CyberArk, Doppler), LOG_EXPORTER (log shipper backends to ship execution logs to external systems), APP (Kestra App plugins), APP_BLOCK (building blocks used inside Apps), CHART (dashboard chart types), DATA_FILTER (dashboard data filters), DATA_FILTER_KPI (dashboard KPI data filters), ADDITIONAL_PLUGIN (miscellaneous plugin classes not covered by another element type). Each entry includes FQCN, title, description, and the owning plugin name/group. Always call this tool when asked what backends of a given type are available -- do NOT guess plugin names. Optional 'detail' parameter: 'full' (default) includes element descriptions, 'concise' omits them to save tokens.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "detail": {
+              "type": "string",
+              "description": "'full' (default) includes element descriptions, 'concise' omits them to save tokens"
+            },
+            "elementType": {
+              "type": "string",
+              "description": "one of: TASK_RUNNER, TRIGGER, STORAGE, SECRET_MANAGER, LOG_EXPORTER, APP, APP_BLOCK, CHART, DATA_FILTER, DATA_FILTER_KPI, ADDITIONAL_PLUGIN"
+            }
+          },
+          "required": [
+            "elementType"
+          ]
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "plugin_release_history",
+        "title": "Plugin Release History",
+        "description": "Get the full release history of a Kestra plugin from GitHub, including which Kestra version each release targets. Parameter 'plugin' is the repo name: plugins are 'plugin-aws', 'plugin-gcp', while storage backends, secret managers and log data stores have their own repositories, e.g. 'storage-gcs', 'secret-vault', 'log-data-store-splunk'. A bare name is prefixed with 'plugin-'. Optional 'limit' sets max releases to return (default: 10, max: 20). For the currently installed version of each plugin, use list_installed_versions instead.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "plugin": {
+              "type": "string",
+              "description": "the repo name, e.g. 'plugin-aws', 'storage-gcs', 'secret-vault', 'log-data-store-splunk'"
+            },
+            "limit": {
+              "type": "number",
+              "description": "max releases to return (default: 10, max: 20)"
+            }
+          },
+          "required": [
+            "plugin"
+          ]
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "search_docs",
+        "title": "Search Docs",
+        "description": "Search Kestra documentation pages by keyword. Returns matching pages with their parsedUrl and title. Optional parameter 'version' targets a specific Kestra version (e.g. 'v0.23'); defaults to the current installed version.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "the search keywords"
+            },
+            "version": {
+              "type": "string",
+              "description": "Kestra version like 'v0.23'; defaults to the current installed version"
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "get_doc",
+        "title": "Get Doc Page",
+        "description": "Fetch the full markdown content and metadata for a Kestra documentation page. Pass either the parsedUrl path (e.g. 'docs/getting-started') from search_docs, or a docId. If the identifier contains a '/' it is treated as a path first; otherwise a docId lookup is attempted. Optional parameter 'version' targets a specific Kestra version (e.g. 'v0.23'); defaults to the current installed version.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "string",
+              "description": "Kestra version like 'v0.23'; defaults to the current installed version"
+            },
+            "pathOrDocId": {
+              "type": "string",
+              "description": "the parsedUrl path (e.g. 'docs/getting-started') or docId of the page"
+            }
+          },
+          "required": [
+            "pathOrDocId"
+          ]
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "list_doc_children",
+        "title": "List Doc Children",
+        "description": "List all documentation pages under a given path prefix, ordered by their navigation order. Returns each child's parsedUrl and metadata. Parameter 'path' is the parent path prefix (e.g. 'docs/getting-started'). Optional parameter 'version' targets a specific Kestra version (e.g. 'v0.23'); defaults to the current installed version.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "description": "the parent path prefix (e.g. 'docs/getting-started')"
+            },
+            "version": {
+              "type": "string",
+              "description": "Kestra version like 'v0.23'; defaults to the current installed version"
+            }
+          },
+          "required": [
+            "path"
+          ]
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "search_blueprints",
+        "title": "Search Blueprints",
+        "description": "Search Kestra flow blueprints -- ready-made flow templates. Returns matching blueprints with id, title, description, tags, includedTasks (FQCNs), and ee (Enterprise Edition flag). Optional parameters: 'query' (search text), 'tags' (comma-separated), 'types' (comma-separated FQCNs to filter by includedTasks -- use list_plugin_elements to get valid FQCNs), 'page' (default: 1), 'size' (results per page, default: 10).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "types": {
+              "type": "string",
+              "description": "comma-separated FQCNs to filter by includedTasks; use list_plugin_elements to get valid FQCNs"
+            },
+            "size": {
+              "type": "number",
+              "description": "results per page, default 10, max 100"
+            },
+            "query": {
+              "type": "string",
+              "description": "search text"
+            },
+            "page": {
+              "type": "number",
+              "description": "page number, default 1"
+            },
+            "tags": {
+              "type": "string",
+              "description": "comma-separated tags"
+            }
+          },
+          "required": []
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      },
+      {
+        "name": "get_blueprint_flow",
+        "title": "Get Blueprint Flow",
+        "description": "Get the full YAML flow definition for a specific Kestra blueprint. Parameter 'id' is the blueprint ID from the search_blueprints tool.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "the blueprint id from the search_blueprints tool"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "annotations": {
+          "title": "",
+          "readOnlyHint": true,
+          "destructiveHint": true,
+          "idempotentHint": false,
+          "openWorldHint": true,
+          "returnDirect": false
+        }
+      }
+    ]
+  }
+}
