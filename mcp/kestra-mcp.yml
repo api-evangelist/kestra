@@ -21,28 +21,44 @@ tools:
     Parameter ''query'' is the search text. Optional ''type'' must be one of: PLUGINS (default), DOCS,
     BLUEPRINTS, BLOGS.'
 - name: task_schema
-  description: Get the full schema/documentation for a specific Kestra task class. Returns properties
-    schema, outputs schema and documentation. Parameter 'cls' is the full class name like 'io.kestra.plugin.core.log.Log'.
-    Optional 'properties' must be one
+  description: 'Get the full schema/documentation for a specific Kestra task class. Returns properties
+    schema, outputs schema and documentation. Parameter ''cls'' is the full class name like ''io.kestra.plugin.core.log.Log''.
+    Optional ''properties'' must be one of: ''declared'' (default, only properties declared by the task)
+    or ''all'' (also includes inherited properties).'
 - name: list_plugins
   description: 'List available Kestra plugins with summary info (name, title, group, description, categories,
     and counts per element type: taskCount, triggerCount, taskRunnerCount, storageCount, secretManagerCount,
-    logExporterCount). Use this to discover w'
+    logExporterCount). Use this to discover what plugins exist. Filter by count > 0 to find plugins with
+    a specific element type. Optional ''category'' parameter filters by: AI, BUSINESS, CLOUD, CORE, DATA,
+    INFRASTRUCTURE. Optional ''detail'' parameter: ''full'' (default) includes plugin descriptions, ''concise''
+    omits them to save tokens.'
 - name: plugin_tasks
   description: List all tasks and triggers for a specific Kestra plugin, grouped by subpackage. The 'plugin'
     parameter accepts a plugin name like 'plugin-aws' or 'core', or a group like 'io.kestra.plugin.aws'.
 - name: list_installed_versions
   description: List the currently installed version of each Kestra plugin. Shows each plugin's name, group,
     and version number. Optional 'plugin' parameter filters by plugin name (e.g. 'aws', 'gcp'). For the
-    full GitHub release history of a plugin, use pl
+    full GitHub release history of a plugin, use plugin_release_history instead.
 - name: list_plugin_elements
   description: 'List all elements of one type across all Kestra plugins. ''elementType'' must be one of:
     TASK_RUNNER (task runner backends, e.g. Kubernetes, GCP Batch, AWS Batch, Docker), TRIGGER (trigger
-    types, e.g. Schedule, Webhook, Realtime variants, JDB'
+    types, e.g. Schedule, Webhook, Realtime variants, JDBC and message queue triggers), STORAGE (internal
+    storage backends Kestra uses for internal state and outputs, e.g. GCS, S3, Azure Blob Storage, MinIO),
+    SECRET_MANAGER (secret manager backends, e.g. HashiCorp Vault, AWS Secrets Manager, GCP Secret Manager,
+    Azure Key Vault, 1Password, CyberArk, Doppler), LOG_EXPORTER (log shipper backends to ship execution
+    logs to external systems), APP (Kestra App plugins), APP_BLOCK (building blocks used inside Apps),
+    CHART (dashboard chart types), DATA_FILTER (dashboard data filters), DATA_FILTER_KPI (dashboard KPI
+    data filters), ADDITIONAL_PLUGIN (miscellaneous plugin classes not covered by another element type).
+    Each entry includes FQCN, title, description, and the owning plugin name/group. Always call this tool
+    when asked what backends of a given type are available -- do NOT guess plugin names. Optional ''detail''
+    parameter: ''full'' (default) includes element descriptions, ''concise'' omits them to save tokens.'
 - name: plugin_release_history
   description: 'Get the full release history of a Kestra plugin from GitHub, including which Kestra version
-    each release targets. Parameter ''plugin'' is the repo name (e.g. ''plugin-aws'', ''plugin-gcp'').
-    Optional ''limit'' sets max releases to return (default:'
+    each release targets. Parameter ''plugin'' is the repo name: plugins are ''plugin-aws'', ''plugin-gcp'',
+    while storage backends, secret managers and log data stores have their own repositories, e.g. ''storage-gcs'',
+    ''secret-vault'', ''log-data-store-splunk''. A bare name is prefixed with ''plugin-''. Optional ''limit''
+    sets max releases to return (default: 10, max: 20). For the currently installed version of each plugin,
+    use list_installed_versions instead.'
 - name: search_docs
   description: Search Kestra documentation pages by keyword. Returns matching pages with their parsedUrl
     and title. Optional parameter 'version' targets a specific Kestra version (e.g. 'v0.23'); defaults
@@ -50,15 +66,19 @@ tools:
 - name: get_doc
   description: Fetch the full markdown content and metadata for a Kestra documentation page. Pass either
     the parsedUrl path (e.g. 'docs/getting-started') from search_docs, or a docId. If the identifier contains
-    a '/' it is treated as a path first; otherwi
+    a '/' it is treated as a path first; otherwise a docId lookup is attempted. Optional parameter 'version'
+    targets a specific Kestra version (e.g. 'v0.23'); defaults to the current installed version.
 - name: list_doc_children
   description: List all documentation pages under a given path prefix, ordered by their navigation order.
     Returns each child's parsedUrl and metadata. Parameter 'path' is the parent path prefix (e.g. 'docs/getting-started').
-    Optional parameter 'version' t
+    Optional parameter 'version' targets a specific Kestra version (e.g. 'v0.23'); defaults to the current
+    installed version.
 - name: search_blueprints
   description: 'Search Kestra flow blueprints -- ready-made flow templates. Returns matching blueprints
     with id, title, description, tags, includedTasks (FQCNs), and ee (Enterprise Edition flag). Optional
-    parameters: ''query'' (search text), ''tags'' (comma-se'
+    parameters: ''query'' (search text), ''tags'' (comma-separated), ''types'' (comma-separated FQCNs
+    to filter by includedTasks -- use list_plugin_elements to get valid FQCNs), ''page'' (default: 1),
+    ''size'' (results per page, default: 10).'
 - name: get_blueprint_flow
   description: Get the full YAML flow definition for a specific Kestra blueprint. Parameter 'id' is the
     blueprint ID from the search_blueprints tool.
