@@ -82,3 +82,29 @@
     detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
+- slug: kestra-eclipse-foundation-open-vsx
+  label: Eclipse Foundation (open-vsx)
+  partner: eclipse
+  partner_name: Eclipse Foundation (open-vsx)
+  category: IDE / developer extension marketplace listing
+  type: marketplace
+  marketplace: open-vsx
+  channel: partner-built
+  evidence: https://open-vsx.org/namespace/kestra-io
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: kestra-vs-code-marketplace-vs-code-marketplace
+  label: VS Code Marketplace (vs-code-marketplace)
+  partner: vs-code-marketplace
+  partner_name: VS Code Marketplace (vs-code-marketplace)
+  category: IDE / developer extension marketplace listing
+  type: marketplace
+  marketplace: vs-code-marketplace
+  channel: partner-built
+  evidence: https://marketplace.visualstudio.com/publishers/kestra-io
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
