@@ -1,4 +1,4 @@
-# Kestra (kestra)
+# Kestra
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,172 +66,143 @@
 
 Kestra is a declarative workflow orchestration platform where pipelines are defined in YAML, combining visual and code-first approaches.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/kestra/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/kestra/refs/heads/main/apis.yml)
+**Areas:** Automation · Data Pipeline · Event-Driven · Orchestration · Workflows
 
-## Scope
+## Kestra on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Kestra is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/kestra/](https://apis.io/providers/kestra/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Automation
-- Data Pipelines
-- Event-Driven
-- Orchestration
-- Workflows
+- [Kestra Enterprise API](https://apis.io/apis/kestra/enterprise-api/) — The Kestra Enterprise API extends the open-source API with additional endpoints for enterprise features including authentication, RBAC, audit logging,…
+- [Kestra Executions API](https://apis.io/apis/kestra/kestra-executions-api/) — Trigger and inspect workflow executions.
+- [Kestra Files API](https://apis.io/apis/kestra/kestra-files-api/) — Manage namespace files.
+- [Kestra Flows API](https://apis.io/apis/kestra/kestra-flows-api/) — Manage flow definitions.
+- [Kestra Namespaces API](https://apis.io/apis/kestra/kestra-namespaces-api/) — Manage namespaces.
+- [Kestra Triggers API](https://apis.io/apis/kestra/kestra-triggers-api/) — Manage and test triggers.
+- [Kestra KV Store API](https://apis.io/apis/kestra/kestra-kv-store-api/) — Manage namespace-scoped key-value pairs.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-03
-- **Modified:** 2026-04-28
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Kestra Flows API
+Model Context Protocol servers that expose the API to agents.
 
-The Kestra Flows API provides programmatic access to manage workflow definitions in the Kestra orchestration platform. It enables creating, updating, retrieving, and deleting flows defined in YAML, supporting the full lifecycle of workflow management via REST endpoints.
+- [kestra](https://apis.io/servers/kestra/kestra/)
 
-- **Human URL:** [https://kestra.io/docs/api-reference](https://kestra.io/docs/api-reference)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Flows
-- Orchestration
-- Workflows
+- [Kestra Agentic Access](https://apis.io/agentic-access/kestra/kestra-agentic-access/)
 
-#### Properties
+#### Collections (7)
 
-- [Documentation](https://kestra.io/docs/api-reference)
-- [OpenAPI](https://kestra.io/docs/api-reference/open-source) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kestra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kestra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### Kestra Executions API
+- [Kestra Open Source REST API](https://apis.io/collections/kestra/open-kestra/)
+- [Kestra Open Source REST Executions API](https://apis.io/collections/kestra/open-kestra-executions-api/)
+- [Kestra Open Source REST Executions Files API](https://apis.io/collections/kestra/open-kestra-files-api/)
+- [Kestra Open Source REST Executions Flows API](https://apis.io/collections/kestra/open-kestra-flows-api/)
+- [Kestra Open Source REST Executions KVStore API](https://apis.io/collections/kestra/open-kestra-kvstore-api/)
+- [Kestra Open Source REST Executions Namespaces API](https://apis.io/collections/kestra/open-kestra-namespaces-api/)
+- [Kestra Open Source REST Executions Triggers API](https://apis.io/collections/kestra/open-kestra-triggers-api/)
 
-The Kestra Executions API allows triggering workflow executions, monitoring their state, retrieving execution details including task run outputs and state transitions, and managing the lifecycle of running workflows programmatically.
+#### Security (3)
 
-- **Human URL:** [https://kestra.io/docs/api-reference](https://kestra.io/docs/api-reference)
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Kestra Authentication](https://apis.io/security/kestra/kestra-authentication/)
+- [Kestra Domain Security](https://apis.io/security/kestra/kestra-domain-security/)
+- [Kestra Trust Center](https://apis.io/security/kestra/kestra-trust-center/)
 
-- Executions
-- Orchestration
-- Workflows
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://kestra.io/docs/api-reference)
-- [OpenAPI](https://kestra.io/docs/api-reference/open-source) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kestra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kestra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Kestra Plans Pricing](https://apis.io/plans/kestra/kestra-plans-pricing/)
 
-### Kestra Namespaces API
+#### Rate limits (1)
 
-The Kestra Namespaces API provides endpoints for managing namespaces, which serve as logical groupings for organizing flows, files, secrets, and key-value pairs within the Kestra platform.
+Published request limits.
 
-- **Human URL:** [https://kestra.io/docs/api-reference](https://kestra.io/docs/api-reference)
+- [Kestra Rate Limits](https://apis.io/rate-limits/kestra/kestra-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Namespaces
-- Orchestration
-- Organization
+What the API costs to run, by operation.
 
-#### Properties
+- [Kestra Finops](https://apis.io/finops/kestra/kestra-finops/)
 
-- [Documentation](https://kestra.io/docs/api-reference)
-- [OpenAPI](https://kestra.io/docs/api-reference/open-source) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kestra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kestra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-### Kestra Key-Value Store API
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-The Kestra Key-Value Store API enables storing and retrieving key-value pairs within namespaces, providing a simple data persistence mechanism for workflows to share state and configuration across executions.
-
-- **Human URL:** [https://kestra.io/docs/how-to-guides/api](https://kestra.io/docs/how-to-guides/api)
-
-#### Tags
-
-- Key-Value Store
-- State Management
-- Storage
-
-#### Properties
-
-- [Documentation](https://kestra.io/docs/how-to-guides/api)
-- [OpenAPI](https://kestra.io/docs/api-reference/open-source) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kestra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kestra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Kestra Namespace Files API
-
-The Kestra Namespace Files API provides endpoints for listing, uploading, and downloading files within namespaces, enabling file management for workflows that need to work with scripts, configurations, or other file-based resources.
-
-- **Human URL:** [https://kestra.io/docs/how-to-guides/api](https://kestra.io/docs/how-to-guides/api)
-
-#### Tags
-
-- Files
-- Namespaces
-- Storage
-
-#### Properties
-
-- [Documentation](https://kestra.io/docs/how-to-guides/api)
-- [OpenAPI](https://kestra.io/docs/api-reference/open-source) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/kestra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kestra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Kestra Enterprise API
-
-The Kestra Enterprise API extends the open-source API with additional endpoints for enterprise features including authentication, RBAC, audit logging, multi-tenancy, SSO, and advanced governance capabilities for production deployments.
-
-- **Human URL:** [https://kestra.io/docs/api-reference/enterprise](https://kestra.io/docs/api-reference/enterprise)
-
-#### Tags
-
-- Authentication
-- Enterprise
-- Governance
-- RBAC
-
-#### Properties
-
-- [Documentation](https://kestra.io/docs/api-reference/enterprise)
-- [Authentication](https://kestra.io/docs/enterprise/auth/api)
-- [Postman Collection](collections/kestra.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/kestra.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/kestra)
-- [Portal](https://kestra.io/)
+- [Website](https://www.kestra.io/)
 - [Documentation](https://kestra.io/docs)
-- [Getting Started](https://kestra.io/docs/quickstart)
-- [Tutorials](https://kestra.io/docs/tutorial)
-- [API Reference](https://kestra.io/docs/api-reference)
-- [API Reference](https://kestra.io/docs/api-reference/open-source)
-- [Authentication](https://kestra.io/docs/enterprise/auth/api)
-- [S D Ks](https://kestra.io/docs/api-reference/kestra-sdk)
-- [Blog](https://kestra.io/blogs)
-- [Changelog](https://kestra.io/docs/changelog)
+- [Getting started](https://kestra.io/docs/quickstart)
+- [API reference](https://kestra.io/docs/api-reference)
 - [Pricing](https://kestra.io/pricing)
 - [Support](https://support.kestra.io/hc/en-us)
-- [Community](https://kestra.io/community)
-- [F A Q](https://kestra.io/faq)
-- [GitHub Organization](https://github.com/kestra-io)
-- [GitHub Repository](https://github.com/kestra-io/kestra)
-- [Integrations](https://kestra.io/plugins/)
-- [Terraform](https://kestra.io/docs/terraform)
-- [Privacy Policy](https://kestra.io/privacy-policy)
-- [Terms of Service](https://kestra.io/terms-and-services)
-- [Contact](https://kestra.io/contact-us)
-- [Features](https://kestra.io/features/api-first)
-- [L L Ms Txt](https://kestra.io/llms.txt)
+- [Changelog](https://kestra.io/docs/changelog)
+- [Blog](https://kestra.io/blogs)
+- [Terms of service](https://kestra.io/terms-and-services)
+- [Privacy policy](https://kestra.io/privacy-policy)
+- [GitHub](https://github.com/kestra-io)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 49.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 58.3 |
+| Contract quality | 43.8 |
+| Contract governance | 0.0 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 61.9 |
+| Access clarity | 47.4 |
+
+**Agent readiness 28.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/kestra/](https://apis.io/providers/kestra/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Kestra: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/kestra/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
